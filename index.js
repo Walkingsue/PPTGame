@@ -51,3 +51,20 @@ console.log(getPlayerChoice);
 //Si jugador Piedra y maquina Tijeras. Gana jugador
 //LLevar un marcador
 //Repetir este proceso con cada una de las opciones
+
+switch (
+  getPlayerChoice.toLocaleLowerCase()
+    .ComputerChoice
+) {
+  case "piedrapiedra":
+    return "Draw";
+    break;
+  case "piedratijeras":
+    return "Victoria";
+    break;
+  case "piedrapapel":
+    return "Derrota";
+    break;
+}
+
+console.log(getPlayerChoice.ComputerChoice);
