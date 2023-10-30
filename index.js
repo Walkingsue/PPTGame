@@ -38,10 +38,7 @@ console.log(ComputerChoice);
 //Crear la funcion de jugador. Debe pedirle al jugador que introduzca una opcion  valida
 //Guardar la opcion escogida
 
-let getPlayerChoice = prompt(
-  "Por favor escoge entre Piedra, Papel o Tijeras",
-  "",
-);
+let getPlayerChoice = prompt("Por favor escoge entre Rock, Paper o Scissors", "");
 
 console.log(getPlayerChoice);
 
@@ -49,22 +46,52 @@ console.log(getPlayerChoice);
 //Si jugador Piedra y maquina Papel. Gana Maquina
 //Si jugador Piedra y maquina Piedra. Empate
 //Si jugador Piedra y maquina Tijeras. Gana jugador
-//LLevar un marcador
 //Repetir este proceso con cada una de las opciones
 
-switch (
-  getPlayerChoice.toLocaleLowerCase()
-    .ComputerChoice
-) {
-  case "piedrapiedra":
-    return "Draw";
-    break;
-  case "piedratijeras":
-    return "Victoria";
-    break;
-  case "piedrapapel":
-    return "Derrota";
-    break;
-}
+let passChoice = (getPlayerChoice + ComputerChoice).toLowerCase();
+console.log(passChoice);
 
-console.log(getPlayerChoice.ComputerChoice);
+const PlayRound = function () {
+  let result;
+  switch (passChoice) {
+    case "rockrock":
+      result = "Draw";
+      break;
+
+    case "rockscissors":
+      result = "Victoria";
+      break;
+
+    case "rockpaper":
+      result = "Derrota";
+      break;
+
+    case "paperrock":
+      result = "Victoria";
+      break;
+
+    case "paperscissors":
+      result = "Derrota";
+      break;
+
+    case "paperpaper":
+      result = "Draw";
+      break;
+
+    case "scissorsrock":
+      result = "Derrota";
+      break;
+
+    case "scissorsscissors":
+      result = "Draw";
+      break;
+
+    case "scissorspaper":
+      result = "Victoria";
+      break;
+  }
+  return result;
+};
+
+let result = PlayRound(passChoice);
+console.log(result);
