@@ -30,9 +30,8 @@ let getComputerChoice = function () {
   }
 };
 
-const ComputerChoice = getComputerChoice();
+const computerChoice = getComputerChoice().toLowerCase();
 
-console.log(ComputerChoice);
 //La funcion trabaja correctamente
 
 //Crear la funcion de jugador. Debe pedirle al jugador que introduzca una opcion  valida
@@ -40,7 +39,7 @@ console.log(ComputerChoice);
 
 let getPlayerChoice = prompt("Por favor escoge entre Rock, Paper o Scissors", "");
 
-console.log(getPlayerChoice);
+const playerChoice = getPlayerChoice.toLowerCase();
 
 //Se compara la seleccion del jugador con la de la computadora
 //Si jugador Piedra y maquina Papel. Gana Maquina
@@ -48,50 +47,26 @@ console.log(getPlayerChoice);
 //Si jugador Piedra y maquina Tijeras. Gana jugador
 //Repetir este proceso con cada una de las opciones
 
-let passChoice = (getPlayerChoice + ComputerChoice).toLowerCase();
-console.log(passChoice);
+console.log(playerChoice);
+console.log(computerChoice);
 
-const PlayRound = function () {
+const playRound = function () {
   let result;
-  switch (passChoice) {
-    case "rockrock":
-      result = "Draw";
-      break;
-
-    case "rockscissors":
-      result = "Victoria";
-      break;
-
-    case "rockpaper":
-      result = "Derrota";
-      break;
-
-    case "paperrock":
-      result = "Victoria";
-      break;
-
-    case "paperscissors":
-      result = "Derrota";
-      break;
-
-    case "paperpaper":
-      result = "Draw";
-      break;
-
-    case "scissorsrock":
-      result = "Derrota";
-      break;
-
-    case "scissorsscissors":
-      result = "Draw";
-      break;
-
-    case "scissorspaper":
-      result = "Victoria";
-      break;
+  if (playerChoice == "rock" && computerChoice == "scissors") {
+    result = "You win";
+  } else if (playerChoice == "scissors" && computerChoice == "paper") {
+    result = "You win";
+  } else if (playerChoice == "paper" && computerChoice == "rock") {
+    result = "You win";
+  } else if (playerChoice === computerChoice) {
+    result = "Tie";
+  } else {
+    result = "You lose";
   }
   return result;
 };
 
-let result = PlayRound(passChoice);
+let result = playRound(playerChoice, computerChoice);
 console.log(result);
+
+//crear una nueva funcion, debe contener el resultado de la funcion PlayRound y llevar contador
