@@ -3,23 +3,12 @@
 
 //Consigue un numero aleatorio y guardalo
 //El numero sera igual a Piedra, papel o tijeras
-let getComputerChoice = function () {
+function getComputerChoice() {
   const getRandomNumb = function () {
     return Math.floor(Math.random() * 10);
   };
 
   const randomNumb = getRandomNumb();
-
-  /* if (randomNumb >= 3) {
-      return "Rock";
-    } else if (randomNumb >= 4 && randomNumb <= 6) {
-      return "Paper";
-    } else if (
-      randomNumb >= 7 &&
-      randomNumb <= 10
-    ) {
-      return "Scissors";
-    } */
 
   if (randomNumb >= 7 && randomNumb <= 10) {
     return "Scissors";
@@ -28,45 +17,57 @@ let getComputerChoice = function () {
   } else {
     return "Rock";
   }
-};
-
-const computerChoice = getComputerChoice().toLowerCase();
+}
 
 //La funcion trabaja correctamente
 
-//Crear la funcion de jugador. Debe pedirle al jugador que introduzca una opcion  valida
-//Guardar la opcion escogida
-
-let getPlayerChoice = prompt("Por favor escoge entre Rock, Paper o Scissors", "");
-
-const playerChoice = getPlayerChoice.toLowerCase();
-
-//Se compara la seleccion del jugador con la de la computadora
-//Si jugador Piedra y maquina Papel. Gana Maquina
-//Si jugador Piedra y maquina Piedra. Empate
-//Si jugador Piedra y maquina Tijeras. Gana jugador
-//Repetir este proceso con cada una de las opciones
-
-console.log(playerChoice);
-console.log(computerChoice);
-
-const playRound = function () {
+function playRound(playerSelection, computerSelection) {
   let result;
-  if (playerChoice == "rock" && computerChoice == "scissors") {
-    result = "You win";
-  } else if (playerChoice == "scissors" && computerChoice == "paper") {
-    result = "You win";
-  } else if (playerChoice == "paper" && computerChoice == "rock") {
-    result = "You win";
-  } else if (playerChoice === computerChoice) {
-    result = "Tie";
-  } else {
-    result = "You lose";
+  if (playerSelection === "rock") {
+    if (computerSelection === "scissors") {
+      return "You win";
+    } else if (computerSelection === "paper") {
+      return "You lose";
+    } else {
+      return "Tie";
+    }
+  } else if (playerSelection === "paper") {
+    if (computerSelection === "rock") {
+      return "You win";
+    } else if (computerSelection === "scissors") {
+      return "You lose";
+    } else {
+      return "Tie";
+    }
+  } else if (playerSelection === "scissors") {
+    if (computerSelection === "paper") {
+      ++playerSelection;
+      return "You win";
+    } else if (computerSelection === "rock") {
+      return "You lose";
+    } else {
+      return "Tie";
+    }
   }
-  return result;
-};
+}
 
-let result = playRound(playerChoice, computerChoice);
-console.log(result);
+let computerSelection = getComputerChoice().toLowerCase();
+console.log(computerSelection);
 
-//crear una nueva funcion, debe contener el resultado de la funcion PlayRound y llevar contador
+let playerSelection = prompt("Choose: Rock/Paper/Scissors", "").toLowerCase();
+
+console.log(playRound(playerSelection, computerSelection));
+
+/*playRound funciona correctamente hasta el momento, falta agregar las opciones de tijeras y papel */
+
+function game() {
+  console.log(playRound());
+  console.log(playRound());
+  console.log(playRound());
+  console.log(playRound());
+  console.log(playRound());
+}
+
+console.log(game());
+/* se intenta llamar la funcion anterior pero no retorna el mismo resultado
+ investigar */
