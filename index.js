@@ -4,7 +4,7 @@
 //Consigue un numero aleatorio y guardalo
 //El numero sera igual a Piedra, papel o tijeras
 function getComputerChoice() {
-  const getRandomNumb = function () {
+  const getRandomNumb = () => {
     return Math.floor(Math.random() * 10);
   };
 
@@ -21,8 +21,10 @@ function getComputerChoice() {
 
 //La funcion trabaja correctamente
 
+let computerSelection = getComputerChoice().toLowerCase();
+console.log(computerSelection);
+
 function playRound(playerSelection, computerSelection) {
-  let result;
   if (playerSelection === "rock") {
     if (computerSelection === "scissors") {
       return "You win";
@@ -41,7 +43,6 @@ function playRound(playerSelection, computerSelection) {
     }
   } else if (playerSelection === "scissors") {
     if (computerSelection === "paper") {
-      ++playerSelection;
       return "You win";
     } else if (computerSelection === "rock") {
       return "You lose";
@@ -51,23 +52,37 @@ function playRound(playerSelection, computerSelection) {
   }
 }
 
-let computerSelection = getComputerChoice().toLowerCase();
-console.log(computerSelection);
+//User interface
 
-let playerSelection = prompt("Choose: Rock/Paper/Scissors", "").toLowerCase();
+const BtnValue = document.querySelectorAll(".sqr");
 
-console.log(playRound(playerSelection, computerSelection));
+BtnValue.forEach(function (BtnValue) {
+  BtnValue.addEventListener("click", () => {
+    let playerSelection = BtnValue.textContent.toLocaleLowerCase();
+    let RoundRes = playRound(playerSelection, computerSelection);
+    result(RoundRes);
+    console.log("Player score is:", PScore);
+    console.log("Computer score is:", CompScore);
 
-/*playRound funciona correctamente hasta el momento, falta agregar las opciones de tijeras y papel */
+    DisplayMsg();
+  });
+});
 
-function game() {
-  console.log(playRound());
-  console.log(playRound());
-  console.log(playRound());
-  console.log(playRound());
-  console.log(playRound());
+let PScore = 0;
+let CompScore = 0;
+
+function result(RoundRes) {
+  if (RoundRes === "You win") {
+    ++PScore;
+  } else if (RoundRes === "You lose") {
+    ++CompScore;
+  }
 }
 
-console.log(game());
-/* se intenta llamar la funcion anterior pero no retorna el mismo resultado
- investigar */
+function DisplayMsg(PScore, CompScore) {
+  if (PScore === 5) {
+    alert("Victory");
+  } else if (CompScore === 5) {
+    alert("Defeat");
+  }
+}
